@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar * {
+  color: white;
+  font-weight: bold;
+}
+
+.navbar {
+  position: relative;
+}
+
+.life-quest {
+  position: absolute;
+  font-size: 3em;
+  right: 10%;
+  top: 80px;
+}
+
+.headline {
+  padding-top: 4em;
+}
+.headline h2 {
+  font-weight: bolder;
+  font-size: 2.4em;
+}
+.headline p {
+  font-size: 1.3em;
+  font-style: italic;
+}
+
+.home {
+  position: relative;
+  height: 50vh;
+}
+.home button {
+  font-size: 1.5em;
+  transition: all 0.3s ease;
+}
+.home button:nth-child(1) {
+  padding: 0.3em 1.5em;
+  border: none;
+  background-color: red;
+  border-radius: 0.3em;
+  color: white;
+}
+.home button:nth-child(2) {
+  padding: 0.3em 1.5em;
+  border: none;
+  color: white;
+  border-radius: 0.3em;
+  background-color: #181818;
+}
+.home button:nth-child(1):hover {
+  background-color: rgb(224, 72, 72);
+}
+.home button:nth-child(2):hover {
+  background-color: #696969;
+} /*# sourceMappingURL=global.css.map */

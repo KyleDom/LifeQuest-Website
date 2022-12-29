@@ -31,13 +31,15 @@
   font-size: 1.3em;
   font-style: italic;
 }
- 
-.logIn {
+
+.logIn,
+.modalLogIn {
   position: relative;
   height: 50vh;
 }
 
-.logIn button {
+.logIn button,
+.modalLogIn button {
   font-size: 1.5em;
   padding: 0.3em 1.5em;
   border-radius: 0.3em;

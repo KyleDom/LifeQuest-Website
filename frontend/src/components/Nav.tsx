@@ -3,9 +3,9 @@ import { NavLink } from "react-router-dom";
 
 export function Navbar() {
   return (
-    <NavbarBs className="navbar bg-danger mb-3">
+    <NavbarBs className="navbar gap-10 bg-danger mb-3">
       <Container>
-        <Nav className="d-flex gap-7">
+        <Nav className="d-flex">
           <h3 className="life-quest text-dark">
             Life<span className="text-danger">Quest</span>
           </h3>
@@ -23,3 +23,5 @@ export function Navbar() {
     </NavbarBs>
   );
 }
+
+export default Navbar;

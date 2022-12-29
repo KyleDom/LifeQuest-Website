@@ -1,6 +1,4 @@
-import React from "react";
-
-function Team() {
+export function Team() {
   return <div>Team</div>;
 }
 

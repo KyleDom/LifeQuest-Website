@@ -31,14 +31,13 @@
   font-size: 1.3em;
   font-style: italic;
 }
-
-.home, 
-.admin {
+ 
+.logIn {
   position: relative;
   height: 50vh;
 }
-.home button,
-.admin button {
+
+.logIn button {
   font-size: 1.5em;
   padding: 0.3em 1.5em;
   border-radius: 0.3em;

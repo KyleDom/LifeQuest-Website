@@ -23,10 +23,12 @@
 .headline {
   padding-top: 4em;
 }
+
 .headline h2 {
   font-weight: bolder;
   font-size: 2.4em;
 }
+
 .headline p {
   font-size: 1.3em;
   font-style: italic;
@@ -44,4 +46,31 @@
   padding: 0.3em 1.5em;
   border-radius: 0.3em;
   transition: all 0.3s ease;
-} /*# sourceMappingURL=global.css.map */
+}
+
+/*# sourceMappingURL=global.css.map */
+
+h1 {
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #333;
+  padding-bottom: 10px;
+  font-family: sans-serif;
+  margin-top: 150px;
+}
+
+.aboutus {
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #333;
+  font-family: sans-serif;
+  font-size: 40px;
+  margin-top: 20px
+}
+
+.paragraph {
+  text-align: center;
+  font-size: 20px;
+}

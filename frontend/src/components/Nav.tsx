@@ -3,20 +3,17 @@ import { NavLink } from "react-router-dom";
 
 export function Navbar() {
   return (
-    <NavbarBs className="navbar bg-danger mb-3">
+    <NavbarBs className="navbar gap-10 bg-danger mb-3">
       <Container>
-        <Nav className="d-flex gap-3">
-        <h3 className="life-quest text-dark">
+        <Nav className="d-flex">
+          <h3 className="life-quest text-dark">
             Life<span className="text-danger">Quest</span>
           </h3>
           <Nav.Link to="/" as={NavLink}>
             Home
           </Nav.Link>
           <Nav.Link to="/login" as={NavLink}>
-            Admin Login
-          </Nav.Link>
-          <Nav.Link to="/bloodbank" as={NavLink}>
-            BloodBank
+            Log In
           </Nav.Link>
           <Nav.Link to="/team" as={NavLink}>
             Team Members
@@ -26,3 +23,5 @@ export function Navbar() {
     </NavbarBs>
   );
 }
+
+export default Navbar;

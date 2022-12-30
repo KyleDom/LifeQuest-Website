@@ -14,7 +14,7 @@ app.get('/', (req: Request, res: Response) => {
   res.json({user: ["kyle", "dominic"]})
 });
 
-app.get('/blood', (req: Request, res: Response) => {
+app.get('/bloodbank', (req: Request, res: Response) => {
   res.json({blood: ["A", "B"]})
 });
 

@@ -13,7 +13,7 @@ app.use((0, cors_1.default)());
 app.get('/', (req, res) => {
     res.json({ user: ["kyle", "dominic"] });
 });
-app.get('/blood', (req, res) => {
+app.get('/bloodbank', (req, res) => {
     res.json({ blood: ["A", "B"] });
 });
 app.get('/login', (req, res) => {

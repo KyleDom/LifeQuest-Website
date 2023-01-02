@@ -34,14 +34,12 @@
   font-style: italic;
 }
 
-.logIn,
-.modalLogIn {
+.logIn {
   position: relative;
   height: 50vh;
 }
 
-.logIn button,
-.modalLogIn button {
+.logIn button {
   font-size: 1.5em;
   padding: 0.3em 1.5em;
   border-radius: 0.3em;
@@ -71,6 +69,6 @@ h1 {
 }
 
 .paragraph {
-  text-align: center;
+  text-align: justify;
   font-size: 20px;
 }

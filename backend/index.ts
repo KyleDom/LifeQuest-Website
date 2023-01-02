@@ -2,6 +2,8 @@ import dotenv from "dotenv";
 import express, { Express, Request, Response } from "express";
 import path from "path";
 import cors from "cors";
+import mysql from "mysql";
+
 
 dotenv.config();
 
@@ -26,6 +28,12 @@ app.get('/team', (req: Request, res: Response) => {
   res.json({user: ["kyle", "dominic"]})
 });
 
+const db = mysql.createConnection({
+  host : 'localhost',
+  user : 'admin', 
+  password : '',
+  database : ''
+})
 
 const port = process.env.PORT || 8000;
 

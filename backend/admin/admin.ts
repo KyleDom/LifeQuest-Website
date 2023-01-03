@@ -1,3 +1,6 @@
+import { Blood } from "../bloodbank/blood";
+import { Donor } from "../user/donor";
+import { Recipient } from "../user/recipient";
 import { User } from "../user/user";
 
 export class Admin {
@@ -7,6 +10,9 @@ export class Admin {
   private contact_number: string;
   private address: string;
   private userList: Map<number, User>;
+  private donorList: Map<number, Donor>;
+  private recipientList: Map<number, Recipient>;
+  private bloodBank: Map<number, Blood>
 
   constructor(
     adminId: number,
@@ -14,7 +20,11 @@ export class Admin {
     password: string,
     contact_number: string,
     address: string,
-    userList: Map<number, User>
+    userList: Map<number, User>,
+    donorList: Map<number, Donor>,
+    recipientList: Map<number, Recipient>,
+    bloodBank: Map<number, Blood>
+
   ) {
     this.adminId = adminId;
     this.username = username;
@@ -22,6 +32,10 @@ export class Admin {
     this.contact_number = contact_number;
     this.address = address;
     this.userList = userList;
+    this.donorList = donorList;
+    this.recipientList = recipientList;
+    this.bloodBank = bloodBank;
+
   }
 
   public setUid(idInput: number) {
@@ -70,4 +84,29 @@ export class Admin {
   public getUserList() {
     return this.userList;
   }
+
+  public setDonorList(donorList: Map<number, Donor>) {
+    this.donorList = donorList;
+  }
+
+  public getDonorList() {
+    return this.donorList;
+  }
+
+  public setRecipientList(recipientList: Map<number, Recipient>) {
+    this.recipientList = recipientList;
+  }
+
+  public getRecipientList() {
+    return this.recipientList;
+  }
+
+  public setBloodBank(bloodBank:  Map<number, Blood>){
+    this.bloodBank = bloodBank;
+  }
+
+  public getBloodBank(){
+    return this.bloodBank
+  }
+    
 }

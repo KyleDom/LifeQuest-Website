@@ -1,4 +1,3 @@
-
 import { Donor } from "../user/donor";
 
 export class Blood {

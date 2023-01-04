@@ -1,21 +1,12 @@
-import { useAuth } from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 import { Button, Form } from "react-bootstrap";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
-
 import { Link } from "react-router-dom";
+import axios from "../api/axios";
 
 export function LogIn() {
-  const sampleAdminCredentials = {
-    username: "adminuser",
-    password: "AdminPassword123!",
-  };
-  const sampleUserCredentials = {
-    username: "username",
-    password: "UserPassword123!",
-  };
-
   const { setAuth } = useAuth();
 
   const formik = useFormik({
@@ -33,14 +24,15 @@ export function LogIn() {
       password: Yup.string().required("Required").strict(true),
     }),
     onSubmit: async function (values, { resetForm }) {
-      if (
-        (values.input === sampleAdminCredentials.username &&
-          values.password === sampleAdminCredentials.password) ||
-        (values.input === sampleUserCredentials.username &&
-          values.password === sampleUserCredentials.password)
-      ) {
-        setAuth(true);
+      let res = await axios.post("/user/login", {
+        username: values.input,
+        password: values.password,
+      });
 
+      if (res.data.response === true) {
+        setAuth(res.data.accessToken);
+
+        localStorage.setItem("accessToken", res.data.accessToken);
         Swal.fire({
           icon: "success",
           title: "Successfully Logged In!",
@@ -52,7 +44,6 @@ export function LogIn() {
           title: "Oops...",
           text: "Looks like there is something wrong with your Username or Password!",
         });
-        console.log("Wrong Credentials");
       }
     },
   });

@@ -24,5 +24,4 @@ export class BloodBank {
     public getBloodStock(){
         return this.bloodStock;
     }
-
 }

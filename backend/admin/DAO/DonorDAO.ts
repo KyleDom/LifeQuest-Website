@@ -1,6 +1,4 @@
 import { Donor } from "../../user/donor";
-import { User } from "../../user/user";
-
 export interface DonorDAO {
   getAllDonors(): Map<number, Donor>;
   getDonorById(id: number): Donor;

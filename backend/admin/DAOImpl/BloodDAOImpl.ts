@@ -1,7 +1,6 @@
 import { Blood } from "../../bloodbank/blood";
 import { BloodDAO } from "../DAO/BloodDAO";
 
-
 export class BloodDAOImpl implements BloodDAO {
     private bloodBank: Map<number, Blood>; 
 

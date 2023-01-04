@@ -8,42 +8,20 @@ export function Team() {
         <Row>
           <Col className="sm">
             <Card style={{ width: '10rem' }}>
+              <Card.Img variant="top" src="/images/jay.png" alt="" />
+              <Card.Body>
+                <Card.Title>BANDIOLA, Jay</Card.Title>
+                <Card.Text>
+                  Sofware Developer
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col className="sm">
+            <Card style={{ width: '10rem' }}>
               <Card.Img variant="top" src="/images/jiv.png" alt="" />
               <Card.Body>
-                <Card.Title>Jiverle Dela Cruz</Card.Title>
-                <Card.Text>
-                  Sofware Developer
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col className="sm">
-            <Card style={{ width: '10rem' }}>
-              <Card.Img variant="top" src="/images/jay.png" alt="" />
-              <Card.Body>
-                <Card.Title>Kyle Lomigo</Card.Title>
-                <Card.Text>
-                  Sofware Developer
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col className="sm">
-            <Card style={{ width: '10rem' }}>
-              <Card.Img variant="top" src="/images/kert.png" alt="" />
-              <Card.Body>
-                <Card.Title>Kert Jem Solas</Card.Title>
-                <Card.Text>
-                  Sofware Developer
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col className="sm">
-            <Card style={{ width: '10rem' }}>
-              <Card.Img variant="top" src="/images/jay.png" alt="" />
-              <Card.Body>
-                <Card.Title>Jay Bandiola</Card.Title>
+                <Card.Title>DELA CRUZ, Jiverlee</Card.Title>
                 <Card.Text>
                   Sofware Developer
                 </Card.Text>
@@ -54,7 +32,7 @@ export function Team() {
             <Card style={{ width: '10rem' }}>
               <Card.Img variant="top" src="/images/cloyd.png" alt="" className="roundedCircle" />
               <Card.Body>
-                <Card.Title>Edmar Cloyd Jagunap</Card.Title>
+                <Card.Title>JAGUNAP, Edmar Cloyd</Card.Title>
                 <Card.Text>
                   Sofware Developer
                 </Card.Text>
@@ -65,7 +43,29 @@ export function Team() {
             <Card style={{ width: '10rem' }}>
               <Card.Img variant="top" src="/images/basil.png" alt="" />
               <Card.Body>
-                <Card.Title>Basil Amso</Card.Title>
+                <Card.Title>JERMANOS AMSO, Basil</Card.Title>
+                <Card.Text>
+                  Sofware Developer
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col className="sm">
+            <Card style={{ width: '10rem' }}>
+              <Card.Img variant="top" src="/images/kyle.png" alt="" />
+              <Card.Body>
+                <Card.Title>LOMIGO, Kyle Dominic</Card.Title>
+                <Card.Text>
+                  Sofware Developer
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col className="sm">
+            <Card style={{ width: '10rem' }}>
+              <Card.Img variant="top" src="/images/kert.png" alt="" />
+              <Card.Body>
+                <Card.Title>SOLAS, Kert Jem</Card.Title>
                 <Card.Text>
                   Sofware Developer
                 </Card.Text>
@@ -76,7 +76,7 @@ export function Team() {
             <Card style={{ width: '10rem' }}>
               <Card.Img variant="top" src="/images/ferj.png" alt="" />
               <Card.Body>
-                <Card.Title>Ferj Dave Torred</Card.Title>
+                <Card.Title>TORRED, Ferjen Dave</Card.Title>
                 <Card.Text>
                   Sofware Developer
                 </Card.Text>
@@ -84,7 +84,6 @@ export function Team() {
             </Card>
           </Col>
         </Row>
-
         <div>
           <h2 className="aboutus"> ABOUT US</h2>
           <p className="paragraph">

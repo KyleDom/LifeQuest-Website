@@ -1,6 +1,5 @@
 import { Recipient } from "../../user/recipient";
 
-
 export interface RecipientDAO {
   getAllRecipients(): Map<number, Recipient>;
   getRecipientById(id: number): Recipient;

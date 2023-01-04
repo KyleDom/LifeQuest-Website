@@ -12,7 +12,7 @@ export class BloodDAOImpl implements BloodDAO {
         return this.bloodBank
     }
 
-    getBloodById(id: number): Blood {
+    getBloodById(id: string): Blood {
         return this.bloodBank.get(id)!;
     }
 

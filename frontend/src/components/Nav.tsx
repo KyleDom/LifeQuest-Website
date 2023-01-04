@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import { Button, Container, Nav, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 
 export function Navbar() {
   const { auth, setAuth, admin, setAdmin } = useAuth();

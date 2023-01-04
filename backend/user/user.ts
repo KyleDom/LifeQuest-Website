@@ -1,5 +1,5 @@
 const db = require("../database");
-const auth = require("../../auth");
+const auth = require("../auth");
 const bcrypt = require("bcrypt");
 import { Gender } from "./GenderEnums";
 

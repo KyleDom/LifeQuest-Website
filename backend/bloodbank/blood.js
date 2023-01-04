@@ -1,30 +1,29 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.Blood = void 0;
-var Blood = /** @class */ (function () {
-    function Blood(blood_id, blood_type, donor) {
+class Blood {
+    constructor(blood_id, blood_type, donor) {
         this.blood_id = blood_id;
         this.blood_type = blood_type;
         this.donor = donor;
     }
-    Blood.prototype.setBloodId = function (id) {
+    setBloodId(id) {
         this.blood_id = id;
-    };
-    Blood.prototype.getBloodId = function () {
+    }
+    getBloodId() {
         return this.blood_id;
-    };
-    Blood.prototype.setBloodType = function (bloodType) {
+    }
+    setBloodType(bloodType) {
         this.blood_type = bloodType;
-    };
-    Blood.prototype.getBloodType = function () {
+    }
+    getBloodType() {
         return this.blood_type;
-    };
-    Blood.prototype.setDonor = function (donor) {
+    }
+    setDonor(donor) {
         this.donor = donor;
-    };
-    Blood.prototype.getDonor = function (donor) {
+    }
+    getDonor(donor) {
         return this.donor;
-    };
-    return Blood;
-}());
+    }
+}
 exports.Blood = Blood;

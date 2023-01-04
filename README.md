@@ -2,7 +2,6 @@
 
 
 # dbmate setup for Windows
-For data migrations
 
 **Step 1:** On PowerShell, run ```Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux```\
 **Step 2:** Restart your PC.\

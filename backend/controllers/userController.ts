@@ -8,7 +8,7 @@ module.exports.login = (req: any, res: any) => {
 
     db.query(findUsername, (err: any, result: any) => {
         if (err) return res.send("An error has occured.");
-        if (result.lenght > 0) {
+        if (result.length > 0) {
             let isPasswordCorrect = bcrypt.compareSync(req.body.password, result[0].password);
 
             if (isPasswordCorrect) {

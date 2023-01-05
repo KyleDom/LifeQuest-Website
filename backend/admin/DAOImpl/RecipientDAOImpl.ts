@@ -12,7 +12,7 @@ export class RecipientDAOImpl implements RecipientDAO {
     return this.recipientList;
   }
 
-  getRecipientById(id: number): Recipient {
+  getRecipientById(id: string): Recipient {
     return this.recipientList.get(id)!;
   }
 

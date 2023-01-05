@@ -1,5 +1,12 @@
 # LifeQuest-Website
 
+**The purpose of the online blood donation management system is to create an online communication between the organization and the blood donors. Anyone or any organization that wants to donate blood for a good cause or needs blood can register through this website. If necessary, the admin authority may add, delete and modify. The Online Blood Donation Management System project's goal is to create an online database of blood donation information. The distributed client-server computing technology has been taken into consideration throughout the entire project's development.**
+
+## Tech Stack 
+Language used: **TYPESCRIPT**\
+Front end: **React and Express JS (deploy)**\
+Backend: **TS - Node js**\
+Database: **MySql**
 
 # dbmate setup for Windows
 

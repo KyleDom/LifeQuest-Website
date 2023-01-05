@@ -1,37 +1,25 @@
+import { userInterface } from "../user/user";
+const { User, userInterface, getUser } = require("../user/user");
 const db = require("../database");
 const auth = require("../auth");
-const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
 
-module.exports.login = (req: any, res: any) => {
-    let findUsername = `SELECT * FROM users where (username LIKE "${req.body.username}")`;
+const login = async (req: any, res: any) => {
+    const user = await getUser(req.body.username);
 
-    db.query(findUsername, (err: any, result: any) => {
-        if (err) return res.send("An error has occured.");
-        if (result.lenght > 0) {
-            let isPasswordCorrect = bcrypt.compareSync(req.body.password, result[0].password);
+    if (user === false) {
+        return res.send({ message: "Username not found", response: false });
+    }
 
-            if (isPasswordCorrect) {
-                let createToken = {
-                    id: result[0].id,
-                    fullname: result[0].fullname,
-                    bloodtype: result[0].bloodtype,
-                    isAdmin: result[0].isAdmin,
-                };
+    let userToLogin = new User(...Object.values(user[0]));
+    const response = userToLogin.login(req.body.password);
+    res.send(response);
+}
 
-                let accessToken = auth.createWebToken(createToken);
-                res.send({ accessToken: accessToken, response: true });
-            } else {
-                res.send({ status: "Password incorrect", response: false });
-            };
-        };
-    });
-};
-
-module.exports.register = (req: any, res: any) => {
-    let userData = {
-        username: req.body.username,
+const register = async (req: any, res: any) => {
+    const userData: userInterface = {
         fullname: req.body.fullname,
+        username: req.body.username,
         password: bcrypt.hashSync(req.body.password, 10),
         bloodType: req.body.bloodType,
         address: req.body.address,
@@ -42,18 +30,18 @@ module.exports.register = (req: any, res: any) => {
         height: req.body.height,
     };
 
-    let sql = `INSERT INTO users (uid, username, fullname, password, bloodType, address, contact_number, gender, age, weight, height) VALUES ("${uuidv4()}", "${userData.username}", "${userData.fullname}", "${userData.password}", "${userData.bloodType}", "${userData.address}", "${userData.contact_number}", "${userData.gender}", "${userData.age}", "${userData.weight}", "${userData.height})`;
+    const newUser = new User(...Object.values(userData));
 
-    db.query(sql, (err: any, res: any) => {
-        if (err) {
-            res.send({ status: "Duplicate Found", error: err, response: false });
-        } else {
-            res.send({ status: "Successfully Registered", response: true });
-        };
-    });
+    const response = await newUser.register();
+
+    if (response[0]) {
+        res.send({ response: true, message: response[1] });
+    } else {
+        res.send({ response: false, message: response[1] });
+    };
 };
 
-module.exports.verifySession = (req: any, res: any) => {
+const verifySession = (req: any, res: any) => {
     let userData = auth.decode(req.headers.authorization);
     if (userData.isAdmin === 1) {
         res.send({ response: true });
@@ -61,3 +49,9 @@ module.exports.verifySession = (req: any, res: any) => {
         res.send({ response: false });
     };
 };
+
+module.exports = {
+    login,
+    register,
+    verifySession,
+}

@@ -12,7 +12,7 @@ export class DonorDAOImpl implements DonorDAO {
     return this.donorList;
   }
 
-  getDonorById(id: number): Donor {
+  getDonorById(id: string): Donor {
     return this.donorList.get(id)!
   }
 

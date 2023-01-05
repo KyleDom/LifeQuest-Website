@@ -1,16 +1,33 @@
 "use strict";
-exports.__esModule = true;
-var userRoutes = require("./routes/userRoutes");
-var dotenv_1 = require("dotenv");
-var express_1 = require("express");
-var cors_1 = require("cors");
-// import mysql from "mysql";
-var db = require("./database");
-dotenv_1["default"].config();
-var app = (0, express_1["default"])();
-app.use(express_1["default"].json());
-app.use((0, cors_1["default"])());
-db.connect(function (err) {
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.db = void 0;
+const dotenv_1 = __importDefault(require("dotenv"));
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
+const mysql_1 = __importDefault(require("mysql"));
+const db = require("./database");
+dotenv_1.default.config();
+const app = (0, express_1.default)();
+const port = 8000 || process.env.PORT;
+exports.db = mysql_1.default.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "se2121",
+    database: "bloodbankmanagementdb",
+});
+db.connect(e => {
+    if (e) {
+        throw e;
+    }
+    console.log("connected to db");
+});
+app.use((0, cors_1.default)());
+app.use(express_1.default.json());
+app.use((0, cors_1.default)());
+db.connect((err) => {
     if (err) {
         throw err;
     }
@@ -39,7 +56,4 @@ const db = mysql.createConnection({
   password : '',
   database : ''
 }) */
-var port = process.env.PORT || 8000;
-app.listen(port, function () {
-    console.log("listening on port ".concat(port));
-});
+const port = process.env.PORT || 8000;

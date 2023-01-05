@@ -1,7 +1,24 @@
+const db = require("../database");
+const auth = require("../auth");
+const bcrypt = require("bcrypt");
 import { Gender } from "./GenderEnums";
 
+export interface userInterface {
+  uid?:string;
+  fullname: string;
+  username: string;
+  password: string;
+  bloodType: string;
+  address: string;
+  contact_number: string;
+  gender: Gender;
+  age: number;
+  weight: number;
+  height: number;
+}
 export class User {
-  private uid: number;
+  private uid: string;
+  private fullname: string;
   private username: string;
   private password: string;
   private bloodType: string;
@@ -13,7 +30,8 @@ export class User {
   private height: number;
 
   constructor(
-    uid: number,
+    uid:string,
+    fullname: string,
     username: string,
     password: string,
     bloodType: string,
@@ -24,7 +42,7 @@ export class User {
     weight: number,
     height: number
   ) {
-    this.uid = uid;
+    this.fullname = fullname;
     this.username = username;
     this.password = password;
     this.bloodType = bloodType;
@@ -36,8 +54,48 @@ export class User {
     this.weight = weight;
   }
 
-  public setUid(idInput: number) {
+  public login(pw: string) {
+    let isPasswordCorrect = bcrypt.compareSync(pw, this.password);
+
+    if (isPasswordCorrect) {
+      let createToken = {
+        uid: this.uid,
+        fullname: this.fullname,
+        bloodType: this.bloodType,
+        isAdmin: 0,
+      };
+
+      let accessToken = auth.createWebToken(createToken);
+      return {
+        accessToken: accessToken,
+        isAdmin: 0,
+        response: true,
+      }
+    }
+    return { status: "Password incorrect", response: false };
+  }
+  public setUid(idInput: string) {
     this.uid = idInput;
+  }
+
+  public register() {
+    let sql = `INSERT INTO users (uid, fullname, username, password, bloodType, address, contact_number, gender, age, height, weight) VALUES (${JSON.stringify(Object.values(this)).slice(1, -1)})`;
+
+    let response = new Promise((resolve, reject) => {
+      db.query(sql, (err: any) => {
+        if (err) {
+          return reject([false, "DUPLICATE/WROND ENTRY"]);
+        };
+      });
+    })
+      .then((res) => {
+        return res;
+      })
+      .catch((error) => {
+        return error;
+      });
+
+    return response;
   }
 
   public getUid() {
@@ -114,4 +172,28 @@ export class User {
   public getHeight() {
     return this.height;
   }
+}
+
+export const getUser = (usn: string, pw: string) => {
+  let findUsername = `SELECT * FROM users where (username LIKE "${usn}")`;
+
+  let promise = new Promise((resolve, reject) => {
+    db.query(findUsername, (err: AnalyserNode, result: any) => {
+      if (err) {
+        return reject(false);
+      };
+      if (result.length > 0) {
+        return resolve(result);
+      } else {
+        return reject(false);
+      }
+    });
+  })
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      return err;
+    });
+  return promise;
 }

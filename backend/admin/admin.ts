@@ -24,7 +24,6 @@ export class Admin {
     donorList: Map<number, Donor>,
     recipientList: Map<number, Recipient>,
     bloodBank: Map<number, Blood>
-
   ) {
     this.adminId = adminId;
     this.username = username;
@@ -35,7 +34,6 @@ export class Admin {
     this.donorList = donorList;
     this.recipientList = recipientList;
     this.bloodBank = bloodBank;
-
   }
 
   public setUid(idInput: number) {
@@ -101,12 +99,11 @@ export class Admin {
     return this.recipientList;
   }
 
-  public setBloodBank(bloodBank:  Map<number, Blood>){
+  public setBloodBank(bloodBank: Map<number, Blood>) {
     this.bloodBank = bloodBank;
   }
 
-  public getBloodBank(){
+  public getBloodBank() {
     return this.bloodBank
   }
-    
 }

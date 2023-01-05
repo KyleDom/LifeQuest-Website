@@ -1,9 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.getUser = exports.User = void 0;
+const db = require("../database");
+const auth = require("../auth");
+const bcrypt = require("bcrypt");
 class User {
-    constructor(uid, username, password, bloodType, address, contact_number, gender, age, weight, height) {
-        this.uid = uid;
+    constructor(uid, fullname, username, password, bloodType, address, contact_number, gender, age, weight, height) {
+        this.fullname = fullname;
         this.username = username;
         this.password = password;
         this.bloodType = bloodType;
@@ -14,8 +17,44 @@ class User {
         this.height = height;
         this.weight = weight;
     }
+    login(pw) {
+        let isPasswordCorrect = bcrypt.compareSync(pw, this.password);
+        if (isPasswordCorrect) {
+            let createToken = {
+                uid: this.uid,
+                fullname: this.fullname,
+                bloodType: this.bloodType,
+                isAdmin: 0,
+            };
+            let accessToken = auth.createWebToken(createToken);
+            return {
+                accessToken: accessToken,
+                isAdmin: 0,
+                response: true,
+            };
+        }
+        return { status: "Password incorrect", response: false };
+    }
     setUid(idInput) {
         this.uid = idInput;
+    }
+    register() {
+        let sql = `INSERT INTO users (uid, fullname, username, password, bloodType, address, contact_number, gender, age, height, weight) VALUES (${JSON.stringify(Object.values(this)).slice(1, -1)})`;
+        let response = new Promise((resolve, reject) => {
+            db.query(sql, (err) => {
+                if (err) {
+                    return reject([false, "DUPLICATE/WROND ENTRY"]);
+                }
+                ;
+            });
+        })
+            .then((res) => {
+            return res;
+        })
+            .catch((error) => {
+            return error;
+        });
+        return response;
     }
     getUid() {
         return this.uid;
@@ -76,3 +115,28 @@ class User {
     }
 }
 exports.User = User;
+const getUser = (usn, pw) => {
+    let findUsername = `SELECT * FROM users where (username LIKE "${usn}")`;
+    let promise = new Promise((resolve, reject) => {
+        db.query(findUsername, (err, result) => {
+            if (err) {
+                return reject(false);
+            }
+            ;
+            if (result.length > 0) {
+                return resolve(result);
+            }
+            else {
+                return reject(false);
+            }
+        });
+    })
+        .then((res) => {
+        return res;
+    })
+        .catch((err) => {
+        return err;
+    });
+    return promise;
+};
+exports.getUser = getUser;

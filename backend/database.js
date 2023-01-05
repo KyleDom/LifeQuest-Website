@@ -21,8 +21,14 @@ connection.query(`CREATE TABLE IF NOT EXISTS users (
         height INT NOT NULL
     )`, (err) => {
     if (err) {
-        return err;
+        return console.log(err);
     }
-    return console.log("TABLE IS SET");
+    return console.log("USERS TABLE IS SET");
+});
+connection.query(`CREATE TABLE IF NOT EXISTS admin (admin_id VARCHAR(100) PRIMARY KEY UNIQUE NOT NULL,username VARCHAR(45) DEFAULT NULL, fullname varchar(100) DEFAULT NULL,password VARCHAR(100) DEFAULT NULL,contact_number VARCHAR(100) DEFAULT NULL,address VARCHAR(100) DEFAULT NULL)`, (err) => {
+    if (err) {
+        return console.log(err);
+    }
+    return console.log("ADMIN TABLE IS SET");
 });
 module.exports = connection;

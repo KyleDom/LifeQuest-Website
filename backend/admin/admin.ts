@@ -2,21 +2,25 @@ import { Blood } from "../bloodbank/blood";
 import { Donor } from "../user/donor";
 import { Recipient } from "../user/recipient";
 import { User } from "../user/user";
-
+const bcrypt = require("bcrypt");
+const auth = require("../auth");
+const db = require("../database");
 export class Admin {
-  private adminId: number;
+  private adminId: string;
   private username: string;
+  private fullname: string;
   private password: string;
   private contact_number: string;
   private address: string;
   private userList: Map<number, User>;
   private donorList: Map<number, Donor>;
   private recipientList: Map<number, Recipient>;
-  private bloodBank: Map<number, Blood>
+  private bloodBank: Map<number, Blood>;
 
   constructor(
-    adminId: number,
+    adminId: string,
     username: string,
+    fullname: string,
     password: string,
     contact_number: string,
     address: string,
@@ -27,6 +31,7 @@ export class Admin {
   ) {
     this.adminId = adminId;
     this.username = username;
+    this.fullname = fullname;
     this.password = password;
     this.contact_number = contact_number;
     this.address = address;
@@ -36,7 +41,25 @@ export class Admin {
     this.bloodBank = bloodBank;
   }
 
-  public setUid(idInput: number) {
+  public login(pw: string) {
+    let isPasswordCorrect = bcrypt.compareSync(pw, this.password);
+    
+    if (isPasswordCorrect) {
+      let createToken = {
+        uid: this.adminId,
+        fullname: this.fullname,
+      };
+
+      let accessToken = auth.createWebToken(createToken);
+      return {
+        accessToken: accessToken,
+        response: true,
+      };
+    }
+    return { status: "Password incorrect", response: false };
+  }
+
+  public setUid(idInput: string) {
     this.adminId = idInput;
   }
 
@@ -104,6 +127,61 @@ export class Admin {
   }
 
   public getBloodBank() {
-    return this.bloodBank
+    return this.bloodBank;
   }
 }
+
+export const getAdminDetails = (
+  usn: string | null = null,
+  id: string | null = null
+) => {
+  if (usn !== null) {
+    let findUsername = `SELECT * FROM admin where (username LIKE "${usn}")`;
+
+    let promise = new Promise((resolve, reject) => {
+      db.query(findUsername, (err: any, result: any) => {
+        if (err) {
+          return reject(false);
+        }
+        if (result.length > 0) {
+          return resolve(result);
+        } else {
+          return reject(false);
+        }
+      });
+    })
+      .then((res) => {
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
+    return promise;
+  }
+
+  // Determine if user is admin
+  if (id !== null) {
+    let findId = `SELECT * FROM admin where (admin_id LIKE "${id}")`;
+
+    let promise = new Promise((resolve, reject) => {
+      db.query(findId, (err: any, result: any) => {
+        if (err) {
+          return reject(false);
+        }
+        if (result.length > 0) {
+          return resolve(true);
+        } else {
+          return reject(false);
+        }
+      });
+    })
+      .then((res) => {
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      });
+
+    return promise;
+  }
+};

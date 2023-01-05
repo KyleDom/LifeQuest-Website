@@ -1,6 +1,6 @@
 FROM node:17
 
-WORKDIR /LifeQuest-Website/backend
+WORKDIR /Lifequest/backend
 
 COPY package*.json ./
 

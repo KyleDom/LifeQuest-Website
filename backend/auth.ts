@@ -3,11 +3,13 @@ const secret = "blooddonation";
 
 module.exports.createWebToken = (user: any) => {
     const data = {
-        uid: user.uid,
+        id: user.id,
         fullname: user.fullname,
+        bloodtype: user.bloodtype,
+        isAdmin: user.isAdmin
       };
 
-    return jwt.sign(data, secret, {expiresIn: "24h"});
+    return jwt.sign(data, secret, {});
 };
 
 module.exports.authenticateToken = (req: any, res: any, next: any) => {

@@ -1,28 +1,34 @@
-const userRoutes = require("./routes/userRoutes");
-
 import dotenv from "dotenv";
 import express, { Express, Request, Response } from "express";
+import path from "path";
 import cors from "cors";
-const db = require("./database");
-
+import mysql from 'mysql2'
 dotenv.config();
+const app = express();
 
-const app: Express = express();
 
 app.use(express.json());
 app.use(cors());
 
-db.connect((err: Error) => {
-  if (err) {
-    throw err;
-  }
-  console.log("Connected to database!");
+app.get('/', (req: Request, res: Response) => {
+  res.json({ user: ["kyle", "dominic"] })
 });
 
-app.use("/user", userRoutes);
+app.get('/bloodbank', (req: Request, res: Response) => {
+  res.json({ blood: ["A", "B"] })
+});
 
-const port = process.env.PORT || 3000;
+app.get('/login', (req: Request, res: Response) => {
+  res.json({ login: ["user1", "user2"] })
+});
+
+app.get('/team', (req: Request, res: Response) => {
+  res.json({ user: ["kyle", "dominic"] })
+});
+
+
+const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
-  console.log(`listening on port 3000`);
+  console.log(`listening on port ${port}`)
 });

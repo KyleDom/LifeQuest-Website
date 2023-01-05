@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q index.js\"",
+    "devStart": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,7 +15,9 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "react": "^18.2.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",

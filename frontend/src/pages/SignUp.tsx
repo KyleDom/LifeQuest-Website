@@ -1,17 +1,44 @@
 import { useFormik } from "formik";
 import { Button, Form } from "react-bootstrap";
 import * as Yup from "yup";
+import {useState,useEffect} from 'react';
+import Axios  from "axios";
+
 
 export function Signup() {
+    const [fullName,setfullName] = useState('')
+    const [address,setaddress] = useState('')
+    const [age,setage] = useState('')
+    const [height,setheight] = useState('')
+    const [weight,setweight] = useState('')
+    const [gender,setgender] = useState('')
+    const [bloodtypes,setbloodtype] = useState('')
+    const [mobileNumber,setMobileNumber] = useState('')
+    const [username,setuserName] = useState('')
+    const [password,setPassword] = useState('')
+    const submitData = ()=> {
+      Axios.post("http://localhost:3002/api/insert", {username: username, password: password, fullName: fullName, address: address, gender:gender, age:age, weight:weight, height:height,mobileNumber:mobileNumber}
+      ).then(()=>{
+        alert("Successful Insert")
+      })
+    }
+
+
+
     const formik = useFormik({
       initialValues: {
         fullName: "",
         address: "",
         age: "",
+        height: "",
+        weight:"",
+        gender: "",
         bloodtypes: "",
         mobileNumber: "",
+        username:"",
         password: "",
       },
+
       validationSchema: Yup.object({
         fullName: Yup.string()
           .max(25, "Must be 25 characters or less")
@@ -43,9 +70,10 @@ export function Signup() {
             <Form.Control
               name="fullName"
               type="text"
-              value={formik.values.fullName}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
+              onChange={(e)=>{
+                
+                setfullName(e.target.value)
+              }}
               placeholder="Please enter your fullname"
             />
             {formik.touched.fullName && formik.errors.fullName ? (
@@ -61,8 +89,9 @@ export function Signup() {
             <Form.Control
               name="age"
               type="number"
-              value={formik.values.age}
-              onChange={formik.handleChange}
+              onChange={(e)=>{
+                setage(e.target.value)
+              }}
               onBlur={formik.handleBlur}
               placeholder="Please enter your age"
             />
@@ -74,13 +103,62 @@ export function Signup() {
               <></>
             )}
           </Form.Group>
+          <Form.Group className="mb-3" controlId="formheight">
+            <Form.Label>Height</Form.Label>
+            <Form.Control
+              name="height"
+              type="number"
+              onChange={(e)=>{
+                setheight(e.target.value)
+              }}
+              onBlur={formik.handleBlur}
+              placeholder="Please enter your height"
+            />
+            {formik.touched.height && formik.errors.height ? (
+              <p className="text-danger" style={{ fontSize: "0.8em" }}>
+                {formik.errors.height}
+              </p>
+            ) : (
+              <></>
+            )}
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formweight">
+            <Form.Label>Weight</Form.Label>
+            <Form.Control
+              name="weight"
+              type="number"
+              onChange={(e)=>{
+                setweight(e.target.value)
+              }}
+              onBlur={formik.handleBlur}
+              placeholder="Please enter your weight"
+            />
+            {formik.touched.weight && formik.errors.weight ? (
+              <p className="text-danger" style={{ fontSize: "0.8em" }}>
+                {formik.errors.weight}
+              </p>
+            ) : (
+              <></>
+            )}
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formgender">
+            <Form.Label>Gender</Form.Label>
+            <Form.Select aria-label="Default select example" onChange={(e)=>{
+                setgender(e.target.value)
+              }}>
+              <option> Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </Form.Select>
+          </Form.Group>
           <Form.Group className="mb-3" controlId="formAddress">
             <Form.Label>Address</Form.Label>
             <Form.Control
               name="address"
               type="text"
-              value={formik.values.address}
-              onChange={formik.handleChange}
+              onChange={(e)=>{
+                setaddress(e.target.value)
+              }}
               onBlur={formik.handleBlur}
               placeholder="Please enter your address"
             />
@@ -94,7 +172,9 @@ export function Signup() {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBloodTypes">
             <Form.Label>Blood Types</Form.Label>
-            <Form.Select aria-label="Default select example">
+            <Form.Select aria-label="Default select example" onChange={(e)=>{
+                setbloodtype(e.target.value)
+              }}>
               <option> Select Blood Type</option>
               <option value="A">A</option>
               <option value="A+">A+</option>
@@ -109,8 +189,9 @@ export function Signup() {
             <Form.Control
               name="mobileNumber"
               type="text"
-              value={formik.values.mobileNumber}
-              onChange={formik.handleChange}
+              onChange={(e)=>{
+                setMobileNumber(e.target.value)
+              }}
               onBlur={formik.handleBlur}
               placeholder="Please enter your mobile number"
             />
@@ -122,13 +203,33 @@ export function Signup() {
               <></>
             )}
           </Form.Group>
+          <Form.Group className="mb-3" controlId="formusername">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              name="username"
+              type="text"
+              onChange={(e)=>{
+                setuserName(e.target.value)
+              }}
+              onBlur={formik.handleBlur}
+              placeholder="Your username"
+            />
+            {formik.touched.username && formik.errors.username ? (
+              <p className="text-danger" style={{ fontSize: "0.8em" }}>
+                {formik.errors.username}
+              </p>
+            ) : (
+              <></>
+            )}
+          </Form.Group>
           <Form.Group className="mb-3" controlId="formPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
               name="password"
               type="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
+              onChange={(e)=>{
+                setPassword(e.target.value)
+              }}
               onBlur={formik.handleBlur}
               placeholder="Your password"
             />
@@ -141,7 +242,7 @@ export function Signup() {
             )}
           </Form.Group>
           <div className="d-flex gap-3 align-items-center justify-content-center">
-            <Button variant="dark">Sign up</Button>
+            <Button variant="dark" onClick={submitData}>Sign up</Button>
           </div>
         </Form>
       </div>

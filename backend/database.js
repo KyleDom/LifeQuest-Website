@@ -1,7 +1,7 @@
 "use strict";
 const mysql = require("mysql2");
 const connectionConfig = {
-    host: "localhost",
+    host: "db",
     user: "root",
     password: "root",
     database: "bloodbankmanagementdb",

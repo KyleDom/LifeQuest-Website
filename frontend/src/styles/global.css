@@ -23,12 +23,10 @@
 .headline {
   padding-top: 4em;
 }
-
 .headline h2 {
   font-weight: bolder;
   font-size: 2.4em;
 }
-
 .headline p {
   font-size: 1.3em;
   font-style: italic;
@@ -38,56 +36,9 @@
   position: relative;
   height: 50vh;
 }
-
 .logIn button {
-  font-size: 1.5em;
+  font-size: 1em;
   padding: 0.3em 1.5em;
   border-radius: 0.3em;
   transition: all 0.3s ease;
-}
-
-h1 {
-  text-align: center;
-  font-weight: bold;
-  letter-spacing: 2px;
-  color: #333;
-  padding-bottom: 10px;
-  font-family: sans-serif;
-  margin-top: 150px;
-}
-
-.aboutus {
-  text-align: center;
-  font-weight: bold;
-  letter-spacing: 2px;
-  color: #333;
-  font-family: sans-serif;
-  font-size: 40px;
-  margin-top: 20px;
-}
-
-.paragraph {
-  text-align: justify;
-  font-size: 20px;
-  padding-bottom: 50px;
-}
-
-::-webkit-scrollbar{
-  width: .5em;
-}
-
-::-webkit-scrollbar-track{
-  background: #ec939c;
-  border-radius: 50vw;
-}
-
-::-webkit-scrollbar-thumb{
-  background: #e45463;
-  border-radius: 50vw;
-}
-
-::-webkit-scrollbar-thumb:hover{
-  background: #dc3545;
-}
-
-/*# sourceMappingURL=global.css.map */
+}/*# sourceMappingURL=global.css.map */

@@ -1,29 +1,62 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect } from "react";
+import { createContext, useState } from "react";
+import axios from "../api/axios";
+import Swal from "sweetalert2";
 
 let authProps: any = {};
 
 const AuthContext = createContext(authProps);
 
 interface Props {
-    children?: ReactNode;
+  children?: ReactNode;
 }
 
 export const AuthProvider = ({ children, ...props }: Props) => {
-    const [auth, setAuth] = useState(false);
+  type authType = undefined | string | null;
+  const [auth, setAuth] = useState<authType>();
+  const [admin, setAdmin] = useState(false);
+  const [loadingCredentials, setLoadingCredentials] = useState(true);
 
-    useEffect(() => {
-        auth && localStorage.setItem("token", "sampleToken");
-    }, [auth]);
+  useEffect(() => {
+    setLoadingCredentials(true);
+    localStorage.getItem("accessToken") === null
+      ? setAuth(undefined)
+      : setAuth(localStorage.getItem("accessToken"));
 
-    useEffect(() => {
-        localStorage.getItem("token") && setAuth(true);
-    }, []);
+    const config = {
+      headers: { Authorization: `Bearer ${auth}` },
+    };
 
-    return (
-        <AuthContext.Provider value={{ auth, setAuth }}>
-            {children}
-        </AuthContext.Provider>
-    )
-}
+    if (auth !== undefined) {
+      axios
+        .get("/user/verify", config)
+        .then((res) => {
+          if (res.data?.auth === "Invalid token") {
+            setAuth(undefined);
+            setAdmin(false);
+            localStorage.removeItem("accessToken");
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Looks like your session is expired. Please login again!",
+            });
+          }
+
+          res.data?.response ? setAdmin(true) : setAdmin(false);
+        })
+        .catch((err) => console.log(err));
+    }
+
+    setLoadingCredentials(false);
+  }, [auth]);
+
+  return (
+    <AuthContext.Provider
+      value={{ auth, setAuth, admin, setAdmin, loadingCredentials }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
 export default AuthContext;

@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 function RequireAuth() {
     const { auth } = useAuth();
     const location = useLocation();
+    
     return auth === false ? (
         <Outlet />
     ) : (

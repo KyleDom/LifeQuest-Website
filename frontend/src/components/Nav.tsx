@@ -1,15 +1,16 @@
-import { Button, Container, Nav, Navbar as NavbarBs } from "react-bootstrap";
+import { Container, Nav, Button, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import axios from "../api/axios";
-import { useAuth } from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 
 export function Navbar() {
-  const { auth, setAuth } = useAuth();
+  const { auth, setAuth, admin, setAdmin } = useAuth();
   const navigate = useNavigate();
 
   function handleLogOut() {
-    setAuth(false);
+    setAuth(undefined);
+    setAdmin(false);
+    localStorage.removeItem("accessToken");
     Swal.fire({
       icon: "success",
       title: "Successfully Logged Out!",
@@ -17,24 +18,15 @@ export function Navbar() {
     setTimeout(() => navigate("/"), 1000);
   }
 
-  async function handleFetch() {
-    const response = await axios.get("/");
-    const stringify = JSON.stringify(response.data);
-    Swal.fire({
-      icon: "success",
-      title: `SUCCESSFULLY FETCH \nDATA: ${stringify}`,
-    });
-  }
-
   return (
-    <NavbarBs className="navbar gap-10 bg-danger mb-3">
+    <NavbarBs className="navbar bg-danger mb-3">
       <Container>
-        <Nav className="d-flex">
+        <Nav className="d-flex gap-7">
           <h3 className="life-quest text-dark">
             Life<span className="text-danger">Quest</span>
           </h3>
           <Nav.Link to="/" as={NavLink}>
-            Home
+            {admin ? "Admin" : "Home"}
           </Nav.Link>
           {!auth && (
             <Nav.Link to="/login" as={NavLink}>
@@ -49,13 +41,8 @@ export function Navbar() {
               Log Out
             </Button>
           )}
-          <Button variant="success" onClick={handleFetch}>
-            Fetch Data
-          </Button>
         </Nav>
       </Container>
     </NavbarBs>
   );
 }
-
-export default Navbar;

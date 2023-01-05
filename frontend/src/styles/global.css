@@ -72,4 +72,22 @@ h1 {
   padding-bottom: 50px;
 }
 
+::-webkit-scrollbar{
+  width: .5em;
+}
+
+::-webkit-scrollbar-track{
+  background: #ec939c;
+  border-radius: 50vw;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #e45463;
+  border-radius: 50vw;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background: #dc3545;
+}
+
 /*# sourceMappingURL=global.css.map */

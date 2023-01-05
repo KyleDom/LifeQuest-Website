@@ -7,7 +7,7 @@ const cors = require("cors");
 const db = mysql.createPool({
     host:'localhost',
     user:'root',
-    password:'realme',
+    password:'se2121',
     database:'bloodbankmanagementdb'
 });
 
@@ -37,8 +37,23 @@ app.post('/api/insert',(req,res)=>{
   })
 });
 
-app.get('/',(req,res)=>{
-});
+app.post('/api/login',(req,res)=>{
+  const username = req.body.username
+  const password = req.body.password
+
+  db.query(`SELECT * FROM user WHERE username = '${username}'`, (err, rows, fields)=>{
+    if (rows.length > 0) {
+      if (rows[0]?.password === password) {
+          console.log('success!');
+          res.redirect('/bloodbank');
+      }else{
+      console.log('incorrect password');
+      }
+  } else {
+      console.log('username not found', username);
+  }
+})
+})
 
 
 app.listen(3002,()=>{

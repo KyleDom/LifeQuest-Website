@@ -95,4 +95,4 @@ export function Team() {
   );
 }
 
-export default Team
+export default Team;

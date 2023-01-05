@@ -1,10 +1,9 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 function RequireAuth() {
     const { auth } = useAuth();
     const location = useLocation();
-
     return auth === false ? (
         <Outlet />
     ) : (

@@ -7,7 +7,7 @@ const cors = require("cors");
 const db = mysql.createPool({
     host:'localhost',
     user:'root',
-    password:'realme',
+    password:'root',
     database:'bloodbankmanagementdb'
 });
 
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 
 
-app.post('/api/insert',(req,res)=>{
+app.post('/api/insert',(req,res, next)=>{
 
   const username = req.body.username
   const password = req.body.password
@@ -30,10 +30,14 @@ app.post('/api/insert',(req,res)=>{
   const height = req.body.height
   const mobileNumber = req.body.mobileNumber
 
-  const sqlInsert ="INSERT INTO user (username, password, fullName, address, gender, age, weight, height, mobileNumber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-  db.query(sqlInsert,[username, password, fullName, address, gender, age, weight, height,mobileNumber],(err,result)=>{
-    
-    console.log(result)
+  const sqlInsert =`INSERT INTO user (username, password, fullName, address, gender, age, weight, height, mobileNumber) 
+  VALUES ( "${username}" , "${password}", "${fullName}", "${address}", "${gender}", "${age}", "${weight}", "${height}", "${mobileNumber}")` // needed bloodtype
+  db.query(sqlInsert,function(error,result) {
+    if(error) {
+        throw error
+    } else {
+        
+    }
   })
 });
 

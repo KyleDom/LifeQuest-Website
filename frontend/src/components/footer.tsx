@@ -10,7 +10,7 @@ export function Footer(){
                         Life<span className="text-danger">Quest</span>
                     </Col>
                     <Col className="pt-2">
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=email@domain.example">
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lifequest@gmail.com" target="_blank">
                             <img src="images/email.png" width="40" height="20"/>
                         </a>
                     </Col>

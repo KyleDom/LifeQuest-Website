@@ -1,45 +1,35 @@
 "use strict";
-exports.__esModule = true;
-var userRoutes = require("./routes/userRoutes");
-var dotenv_1 = require("dotenv");
-var express_1 = require("express");
-var cors_1 = require("cors");
-// import mysql from "mysql";
-var db = require("./database");
-dotenv_1["default"].config();
-var app = (0, express_1["default"])();
-app.use(express_1["default"].json());
-app.use((0, cors_1["default"])());
-db.connect(function (err) {
-    if (err) {
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const dotenv_1 = __importDefault(require("dotenv"));
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
+const mysql2_1 = __importDefault(require("mysql2"));
+dotenv_1.default.config();
+const app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.use((0, cors_1.default)());
+const db = mysql2_1.default.createConnection({
+    user: "root",
+    host: "localhost",
+    password: "se2121",
+    database: "bloodbankmanagementdb"
+});
+db.connect((err) => {
+    if (err)
         throw err;
-    }
-    console.log("Connected to database!");
+    console.log("database connected");
 });
-app.use("/user", userRoutes);
-/* app.get('/', (req: Request, res: Response) => {
-  res.json({user: ["kyle", "dominic"]})
+app.post("/signup", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    db.query("INSERT INTO user (username, password) VALUES (?,?)", [username, password], (err, result) => {
+        console.log(err);
+    });
 });
-
-app.get('/bloodbank', (req: Request, res: Response) => {
-  res.json({blood: ["A", "B"]})
-});
-
-app.get('/login', (req: Request, res: Response) => {
-  res.json({login: ["user1", "user2"]})
-});
-
-app.get('/team', (req: Request, res: Response) => {
-  res.json({user: ["kyle", "dominic"]})
-});
-
-const db = mysql.createConnection({
-  host : 'localhost',
-  user : 'admin',
-  password : '',
-  database : ''
-}) */
-var port = process.env.PORT || 8000;
-app.listen(port, function () {
-    console.log("listening on port ".concat(port));
+const port = process.env.PORT || 8000;
+app.listen(8000, () => {
+    console.log(`listening on port ${port}`);
 });

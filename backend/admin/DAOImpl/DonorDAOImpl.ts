@@ -2,17 +2,17 @@ import { Donor } from "../../user/donor";
 import { DonorDAO } from "../DAO/DonorDAO";
 
 export class DonorDAOImpl implements DonorDAO {
-  private donorList: Map<number, Donor>;
+  private donorList: Map<string, Donor>;
 
-  constructor(donorList: Map<number, Donor>) {
+  constructor(donorList: Map<string, Donor>) {
     this.donorList = donorList;
   }
 
-  getAllDonors(): Map<number, Donor> {
+  getAllDonors(): Map<string, Donor> {
     return this.donorList;
   }
 
-  getDonorById(id: number): Donor {
+  getDonorById(id: string): Donor {
     return this.donorList.get(id)!
   }
 

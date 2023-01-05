@@ -1,17 +1,17 @@
 import { Donor } from "../user/donor";
 
 export class Blood {
-    private blood_id: number;
+    private blood_id: string;
     private blood_type: string; 
     private donor: Donor;
 
-    constructor(blood_id: number, blood_type: string, donor: Donor){
+    constructor(blood_id: string, blood_type: string, donor: Donor){
         this.blood_id = blood_id;
         this.blood_type = blood_type
         this.donor = donor
     }
 
-    public setBloodId(id: number){
+    public setBloodId(id: string){
         this.blood_id = id;
     }
 

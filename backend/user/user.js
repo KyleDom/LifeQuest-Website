@@ -1,11 +1,8 @@
 "use strict";
-exports.__esModule = true;
-exports.getUser = exports.User = void 0;
-var db = require("../database");
-var auth = require("../../auth");
-var bcrypt = require("bcrypt");
-var User = /** @class */ (function () {
-    function User(uid, fullname, username, password, bloodType, address, contact_number, gender, age, weight, height) {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.User = void 0;
+class User {
+    constructor(uid, fullname, username, password, bloodType, address, contact_number, gender, age, weight, height) {
         this.uid = uid;
         this.fullname = fullname;
         this.username = username;
@@ -18,125 +15,65 @@ var User = /** @class */ (function () {
         this.height = height;
         this.weight = weight;
     }
-    User.prototype.login = function (pw) {
-        var isPasswordCorrect = bcrypt.compareSync(pw, this.password);
-        if (isPasswordCorrect) {
-            var createToken = {
-                uid: this.uid,
-                fullname: this.fullname,
-                bloodType: this.bloodType,
-                isAdmin: 0
-            };
-            var accessToken = auth.createWebToken(createToken);
-            return {
-                accessToken: accessToken,
-                isAdmin: 0,
-                response: true
-            };
-        }
-        return { status: "Password incorrect", response: false };
-    };
-    User.prototype.setUid = function (idInput) {
+    setUid(idInput) {
         this.uid = idInput;
-    };
-    User.prototype.register = function () {
-        var sql = "INSERT INTO users (uid, fullname, username, password, bloodType, address, contact_number, gender, age, height, weight) VALUES (".concat(JSON.stringify(Object.values(this)).slice(1, -1), ")");
-        var response = new Promise(function (resolve, reject) {
-            db.query(sql, function (err) {
-                if (err) {
-                    return reject([false, "DUPLICATE/WROND ENTRY"]);
-                }
-                ;
-            });
-        })
-            .then(function (res) {
-            return res;
-        })["catch"](function (error) {
-            return error;
-        });
-        return response;
-    };
-    User.prototype.getUid = function () {
+    }
+    getUid() {
         return this.uid;
-    };
-    User.prototype.setUsername = function (usernameInput) {
+    }
+    setUsername(usernameInput) {
         this.username = usernameInput;
-    };
-    User.prototype.getUsername = function () {
+    }
+    getUsername() {
         return this.username;
-    };
-    User.prototype.setPassword = function (passwordInput) {
+    }
+    setPassword(passwordInput) {
         this.password = passwordInput;
-    };
-    User.prototype.getPassword = function () {
+    }
+    getPassword() {
         return this.password;
-    };
-    User.prototype.setBloodtype = function (bloodTypeInput) {
+    }
+    setBloodtype(bloodTypeInput) {
         this.bloodType = bloodTypeInput;
-    };
-    User.prototype.getBloodType = function () {
+    }
+    getBloodType() {
         return this.bloodType;
-    };
-    User.prototype.setAddress = function (addressInput) {
+    }
+    setAddress(addressInput) {
         this.address = addressInput;
-    };
-    User.prototype.getAddress = function () {
+    }
+    getAddress() {
         return this.address;
-    };
-    User.prototype.setContactNumber = function (contactInput) {
+    }
+    setContactNumber(contactInput) {
         this.contact_number = contactInput;
-    };
-    User.prototype.getContactNumber = function () {
+    }
+    getContactNumber() {
         return this.contact_number;
-    };
-    User.prototype.setGender = function (gender) {
+    }
+    setGender(gender) {
         this.gender = gender;
-    };
-    User.prototype.getGender = function () {
+    }
+    getGender() {
         return this.gender;
-    };
-    User.prototype.setAge = function (ageInput) {
+    }
+    setAge(ageInput) {
         this.age = ageInput;
-    };
-    User.prototype.getAge = function () {
+    }
+    getAge() {
         return this.age;
-    };
-    User.prototype.setWeight = function (weightInput) {
+    }
+    setWeight(weightInput) {
         this.weight = weightInput;
-    };
-    User.prototype.getWeight = function () {
+    }
+    getWeight() {
         return this.weight;
-    };
-    User.prototype.setHeight = function (HeightInput) {
+    }
+    setHeight(HeightInput) {
         this.height = HeightInput;
-    };
-    User.prototype.getHeight = function () {
+    }
+    getHeight() {
         return this.height;
-    };
-    return User;
-}());
+    }
+}
 exports.User = User;
-var getUser = function (usn, pw) {
-    var findUsername = "SELECT * FROM users where (username LIKE \"".concat(usn, "\")");
-    var promise = new Promise(function (resolve, reject) {
-        db.query(findUsername, function (err, result) {
-            if (err) {
-                return reject(false);
-            }
-            ;
-            if (result.length > 0) {
-                return resolve(result);
-            }
-            else {
-                return reject(false);
-            }
-        });
-    })
-        .then(function (res) {
-        return res;
-    })["catch"](function (err) {
-        return err;
-    });
-    return promise;
-};
-exports.getUser = getUser;

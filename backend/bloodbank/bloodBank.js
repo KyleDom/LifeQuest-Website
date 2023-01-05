@@ -1,23 +1,22 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.BloodBank = void 0;
-var BloodBank = /** @class */ (function () {
-    function BloodBank(bloodBank_id, bloodStock) {
+class BloodBank {
+    constructor(bloodBank_id, bloodStock) {
         this.bloodBank_id = bloodBank_id;
         this.bloodStock = bloodStock;
     }
-    BloodBank.prototype.setBloodBankId = function (id) {
+    setBloodBankId(id) {
         this.bloodBank_id = id;
-    };
-    BloodBank.prototype.getBloodBankId = function () {
+    }
+    getBloodBankId() {
         return this.bloodBank_id;
-    };
-    BloodBank.prototype.setBloodStock = function (bloodStock) {
+    }
+    setBloodStock(bloodStock) {
         this.bloodStock = bloodStock;
-    };
-    BloodBank.prototype.getBloodStock = function () {
+    }
+    getBloodStock() {
         return this.bloodStock;
-    };
-    return BloodBank;
-}());
+    }
+}
 exports.BloodBank = BloodBank;

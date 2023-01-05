@@ -2,13 +2,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Admin = void 0;
 class Admin {
-    constructor(adminId, username, password, contact_number, address, userList) {
+    constructor(adminId, username, password, contact_number, address, userList, donorList, recipientList, bloodBank) {
         this.adminId = adminId;
         this.username = username;
         this.password = password;
         this.contact_number = contact_number;
         this.address = address;
         this.userList = userList;
+        this.donorList = donorList;
+        this.recipientList = recipientList;
+        this.bloodBank = bloodBank;
     }
     setUid(idInput) {
         this.adminId = idInput;
@@ -45,6 +48,24 @@ class Admin {
     }
     getUserList() {
         return this.userList;
+    }
+    setDonorList(donorList) {
+        this.donorList = donorList;
+    }
+    getDonorList() {
+        return this.donorList;
+    }
+    setRecipientList(recipientList) {
+        this.recipientList = recipientList;
+    }
+    getRecipientList() {
+        return this.recipientList;
+    }
+    setBloodBank(bloodBank) {
+        this.bloodBank = bloodBank;
+    }
+    getBloodBank() {
+        return this.bloodBank;
     }
 }
 exports.Admin = Admin;

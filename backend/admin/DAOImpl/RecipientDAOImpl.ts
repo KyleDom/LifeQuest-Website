@@ -2,17 +2,17 @@ import { Recipient } from "../../user/recipient";
 import { RecipientDAO } from "../DAO/RecipientDAO";
 
 export class RecipientDAOImpl implements RecipientDAO {
-  private recipientList: Map<number, Recipient>;
+  private recipientList: Map<string, Recipient>;
 
-  constructor(recipientList: Map<number, Recipient>) {
+  constructor(recipientList: Map<string, Recipient>) {
     this.recipientList = recipientList;
   }
 
-  getAllRecipients(): Map<number, Recipient> {
+  getAllRecipients(): Map<string, Recipient> {
     return this.recipientList;
   }
 
-  getRecipientById(id: number): Recipient {
+  getRecipientById(id: string): Recipient {
     return this.recipientList.get(id)!;
   }
 

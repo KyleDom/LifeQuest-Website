@@ -2,23 +2,25 @@ import { Gender } from "./GenderEnums";
 import { User } from "./user";
 
 export class Donor extends User {
-  private donorId: number;
+  private donorId: string;
 
   constructor(
-    donorId: number,
-    uid: number,
+    donorId: string,
+    uid: string,
+    fullname: string,
     username: string,
     password: string,
     bloodType: string,
     address: string,
     contact_number: string,
-    gender: Gender,
+    gender: string,
     age: number,
     weight: number,
     height: number
   ) {
     super(
       uid,
+      fullname,
       username,
       password,
       bloodType,
@@ -36,7 +38,7 @@ export class Donor extends User {
     
   }
 
-  public setDonorId(idInput: number) {
+  public setDonorId(idInput: string) {
     this.donorId = idInput;
   }
 

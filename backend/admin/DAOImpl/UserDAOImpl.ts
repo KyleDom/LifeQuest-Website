@@ -3,17 +3,17 @@ import { User } from "../../user/user";
 
 
 export class UserDAOImpl implements UserDAO {
-  private userList: Map<number, User>;
+  private userList: Map<string, User>;
 
-  constructor(userList: Map<number, User>) {
+  constructor(userList: Map<string, User>) {
     this.userList = userList;
   }
 
-  getAllUsers(): Map<number, User> {
+  getAllUsers(): Map<string, User> {
     return this.userList;
   }
 
-  getUserById(id: number): User {
+  getUserById(id: string): User {
     return this.userList.get(id)!;
   }
 

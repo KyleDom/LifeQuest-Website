@@ -2,17 +2,17 @@ import { Blood } from "../../bloodbank/blood";
 import { BloodDAO } from "../DAO/BloodDAO";
 
 export class BloodDAOImpl implements BloodDAO {
-    private bloodBank: Map<number, Blood>; 
+    private bloodBank: Map<string, Blood>; 
 
-    constructor(bloodBank: Map<number, Blood>){
+    constructor(bloodBank: Map<string, Blood>){
         this.bloodBank = bloodBank;
     }
 
-    getAllBlood(): Map<number, Blood> {
+    getAllBlood(): Map<string, Blood> {
         return this.bloodBank
     }
 
-    getBloodById(id: number): Blood {
+    getBloodById(id: string): Blood {
         return this.bloodBank.get(id)!;
     }
 

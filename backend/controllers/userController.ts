@@ -2,7 +2,6 @@ import { userInterface } from "../user/user";
 const { User, userInterface, getUser } = require("../user/user");
 const db = require("../database");
 const auth = require("../auth");
-const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
 
 const login = async (req: any, res: any) => {
@@ -31,7 +30,7 @@ const register = async (req: any, res: any) => {
         height: req.body.height,
     };
 
-    const newUser = new User(uuidv4(), ...Object.values(userData));
+    const newUser = new User(...Object.values(userData));
 
     const response = await newUser.register();
 

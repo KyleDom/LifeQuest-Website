@@ -6,7 +6,6 @@ const auth = require("../auth");
 const bcrypt = require("bcrypt");
 class User {
     constructor(uid, fullname, username, password, bloodType, address, contact_number, gender, age, weight, height) {
-        this.uid = uid;
         this.fullname = fullname;
         this.username = username;
         this.password = password;

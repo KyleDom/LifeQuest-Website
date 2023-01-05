@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 import { Gender } from "./GenderEnums";
 
 export interface userInterface {
-  uid?: string;
+  uid?:string;
   fullname: string;
   username: string;
   password: string;
@@ -30,7 +30,7 @@ export class User {
   private height: number;
 
   constructor(
-    uid: string,
+    uid:string,
     fullname: string,
     username: string,
     password: string,
@@ -42,7 +42,6 @@ export class User {
     weight: number,
     height: number
   ) {
-    this.uid = uid;
     this.fullname = fullname;
     this.username = username;
     this.password = password;

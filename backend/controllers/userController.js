@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const { User, userInterface, getUser } = require("../user/user");
 const db = require("../database");
 const auth = require("../auth");
-const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield getUser(req.body.username);
@@ -36,7 +35,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         weight: req.body.weight,
         height: req.body.height,
     };
-    const newUser = new User(uuidv4(), ...Object.values(userData));
+    const newUser = new User(...Object.values(userData));
     const response = yield newUser.register();
     if (response[0]) {
         res.send({ response: true, message: response[1] });

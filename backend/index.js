@@ -6,30 +6,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-const mysql2_1 = __importDefault(require("mysql2"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
-const db = mysql2_1.default.createConnection({
-    user: "root",
-    host: "localhost",
-    password: "se2121",
-    database: "bloodbankmanagementdb"
+app.get('/', (req, res) => {
+    res.json({ user: ["kyle", "dominic"] });
 });
-db.connect((err) => {
-    if (err)
-        throw err;
-    console.log("database connected");
+app.get('/bloodbank', (req, res) => {
+    res.json({ blood: ["A", "B"] });
 });
-app.post("/signup", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-    db.query("INSERT INTO user (username, password) VALUES (?,?)", [username, password], (err, result) => {
-        console.log(err);
-    });
+app.get('/login', (req, res) => {
+    res.json({ login: ["user1", "user2"] });
+});
+app.get('/team', (req, res) => {
+    res.json({ user: ["kyle", "dominic"] });
 });
 const port = process.env.PORT || 8000;
-app.listen(8000, () => {
+app.listen(port, () => {
     console.log(`listening on port ${port}`);
 });

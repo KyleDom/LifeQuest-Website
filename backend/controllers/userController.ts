@@ -1,4 +1,3 @@
-
 const { User, getUser } = require("../user/user");
 const db = require("../database");
 const auth = require("../auth");

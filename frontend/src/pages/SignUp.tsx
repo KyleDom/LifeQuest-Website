@@ -17,7 +17,7 @@ export function Signup() {
     const [username,setuserName] = useState('')
     const [password,setPassword] = useState('')
     const submitData = ()=> {
-      Axios.post("http://localhost:3002/api/insert", {username: username, password: password, fullName: fullName, address: address, gender:gender, age:age, weight:weight, height:height,mobileNumber:mobileNumber}
+      Axios.post("http://localhost:3002/api/insert", {username: username, password: password, fullName: fullName, address: address, gender:gender, bloodtype: bloodtypes, age:age, weight:weight, height:height,mobileNumber:mobileNumber}
       ).then(()=>{
         alert("Successful Insert")
       })

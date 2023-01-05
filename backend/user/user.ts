@@ -1,4 +1,3 @@
-
 export class User {
   private uid: string;
   private fullname: string;
@@ -13,7 +12,7 @@ export class User {
   private height: number;
 
   constructor(
-    uid: string,
+    uid:string,
     fullname: string,
     username: string,
     password: string,

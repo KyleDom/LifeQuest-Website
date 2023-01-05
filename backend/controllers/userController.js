@@ -1,36 +1,31 @@
-var db = require("../database");
-var auth = require("../auth");
-var uuidv4 = require("uuid").v4;
-var bcrypt = require("bcrypt");
-module.exports.login = function (req, res) {
-    var findUsername = "SELECT * FROM users where (username LIKE \"".concat(req.body.username, "\")");
-    db.query(findUsername, function (err, result) {
-        if (err)
-            return res.send("An error has occured.");
-        if (result.lenght > 0) {
-            var isPasswordCorrect = bcrypt.compareSync(req.body.password, result[0].password);
-            if (isPasswordCorrect) {
-                var createToken = {
-                    id: result[0].id,
-                    fullname: result[0].fullname,
-                    bloodtype: result[0].bloodtype,
-                    isAdmin: result[0].isAdmin
-                };
-                var accessToken = auth.createWebToken(createToken);
-                res.send({ accessToken: accessToken, response: true });
-            }
-            else {
-                res.send({ status: "Password incorrect", response: false });
-            }
-            ;
-        }
-        ;
+"use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-module.exports.register = function (req, res) {
-    var userData = {
-        username: req.body.username,
+Object.defineProperty(exports, "__esModule", { value: true });
+const { User, userInterface, getUser } = require("../user/user");
+const db = require("../database");
+const auth = require("../auth");
+const bcrypt = require("bcrypt");
+const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield getUser(req.body.username);
+    if (user === false) {
+        return res.send({ message: "Username not found", response: false });
+    }
+    let userToLogin = new User(...Object.values(user[0]));
+    const response = userToLogin.login(req.body.password);
+    res.send(response);
+});
+const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const userData = {
         fullname: req.body.fullname,
+        username: req.body.username,
         password: bcrypt.hashSync(req.body.password, 10),
         bloodType: req.body.bloodType,
         address: req.body.address,
@@ -38,21 +33,20 @@ module.exports.register = function (req, res) {
         gender: req.body.gender,
         age: req.body.age,
         weight: req.body.weight,
-        height: req.body.height
+        height: req.body.height,
     };
-    var sql = "INSERT INTO users (uid, username, fullname, password, bloodType, address, contact_number, gender, age, weight, height) VALUES (\"".concat(uuidv4(), "\", \"").concat(userData.username, "\", \"").concat(userData.fullname, "\", \"").concat(userData.password, "\", \"").concat(userData.bloodType, "\", \"").concat(userData.address, "\", \"").concat(userData.contact_number, "\", \"").concat(userData.gender, "\", \"").concat(userData.age, "\", \"").concat(userData.weight, "\", \"").concat(userData.height, ")");
-    db.query(sql, function (err, res) {
-        if (err) {
-            res.send({ status: "Duplicate Found", error: err, response: false });
-        }
-        else {
-            res.send({ status: "Successfully Registered", response: true });
-        }
-        ;
-    });
-};
-module.exports.verifySession = function (req, res) {
-    var userData = auth.decode(req.headers.authorization);
+    const newUser = new User(...Object.values(userData));
+    const response = yield newUser.register();
+    if (response[0]) {
+        res.send({ response: true, message: response[1] });
+    }
+    else {
+        res.send({ response: false, message: response[1] });
+    }
+    ;
+});
+const verifySession = (req, res) => {
+    let userData = auth.decode(req.headers.authorization);
     if (userData.isAdmin === 1) {
         res.send({ response: true });
     }
@@ -60,4 +54,9 @@ module.exports.verifySession = function (req, res) {
         res.send({ response: false });
     }
     ;
+};
+module.exports = {
+    login,
+    register,
+    verifySession,
 };

@@ -5,6 +5,7 @@ import { lazy, Suspense } from "react";
 import PublicRoute from "./components/PublicRoute";
 import { useAuth } from "./hooks/useAuth";
 import Signup from "./pages/SignUp";
+import Footer from "./components/footer";
 
 
 const Home = lazy(() => import("./pages/Home"));
@@ -42,6 +43,7 @@ function App() {
           </Routes>
         </Container>
       </Suspense>
+      <Footer />
     </div>
   );
 }

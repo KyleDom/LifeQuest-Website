@@ -3,10 +3,12 @@ const jwt = require("jsonwebtoken");
 const secret = "blooddonation";
 module.exports.createWebToken = (user) => {
     const data = {
-        uid: user.uid,
+        id: user.id,
         fullname: user.fullname,
+        bloodtype: user.bloodtype,
+        isAdmin: user.isAdmin
     };
-    return jwt.sign(data, secret, { expiresIn: "24h" });
+    return jwt.sign(data, secret, {});
 };
 module.exports.authenticateToken = (req, res, next) => {
     const authHeader = req.headers.authorization;

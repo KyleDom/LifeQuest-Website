@@ -16,16 +16,7 @@ export function Navbar() {
     });
     setTimeout(() => navigate("/"), 1000);
   }
-
-  async function handleFetch() {
-    const response = await axios.get("/");
-    const stringify = JSON.stringify(response.data);
-    Swal.fire({
-      icon: "success",
-      title: `SUCCESSFULLY FETCH \nDATA: ${stringify}`,
-    });
-  }
-
+  
   return (
     <NavbarBs className="navbar gap-10 bg-danger mb-3">
       <Container>
@@ -49,9 +40,6 @@ export function Navbar() {
               Log Out
             </Button>
           )}
-          <Button variant="success" onClick={handleFetch}>
-            Fetch Data
-          </Button>
         </Nav>
       </Container>
     </NavbarBs>

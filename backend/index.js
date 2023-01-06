@@ -7,7 +7,7 @@ const cors = require("cors");
 const db = mysql.createPool({
     host:'localhost',
     user:'root',
-    password:'se2121',
+    password:'ethannoel123',
     database:'bloodbankmanagementdb'
 });
 
@@ -30,10 +30,15 @@ app.post('/api/insert',(req,res)=>{
   const height = req.body.height
   const mobileNumber = req.body.mobileNumber
 
-  const sqlInsert ="INSERT INTO user (username, password, fullName, address, gender, age, weight, height, mobileNumber) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
-  db.query(sqlInsert,[username, password, fullName, address, gender, age, weight, height,mobileNumber],(err,result)=>{
-    
-    console.log(result)
+  const sqlInsert =`INSERT INTO user (username, password, fullName, address, gender, age, weight, height, mobileNumber) 
+  VALUES ("${username}", "${password}", "${fullName}", "${address}", "${gender}", "${age}", "${weight}", "${height}", "${mobileNumber}")`
+  db.query(sqlInsert, function(err, res){
+    if (err) {
+      throw(err)
+    } else {
+      console.log("added user")
+    }
+    // console.log(result)
   })
 });
 

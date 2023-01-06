@@ -1,8 +1,10 @@
 const express = require('express')
 const app = express()
+
 const bodyParser = require('body-parser')
 const mysql = require('mysql')
 const cors = require("cors");
+const { application } = require('express');
 
 const db = mysql.createPool({
     host:'localhost',
@@ -29,18 +31,19 @@ app.post('/api/insert',(req,res)=>{
   const weight = req.body.weight
   const height = req.body.height
   const mobileNumber = req.body.mobileNumber
-
-  const sqlInsert =`INSERT INTO user (username, password, fullName, address, gender, age, weight, height, mobileNumber) 
-  VALUES ("${username}", "${password}", "${fullName}", "${address}", "${gender}", "${age}", "${weight}", "${height}", "${mobileNumber}")`
+  const blood = req.body.blood
+  const sqlInsert =`INSERT INTO user (username, password, fullName, address, gender, age, weight, height, mobileNumber, blood) 
+  VALUES ("${username}", "${password}", "${fullName}", "${address}", "${gender}", "${age}", "${weight}", "${height}", "${mobileNumber}", "${blood}")`
   db.query(sqlInsert, function(err, res){
-    if (err) {
-      throw(err)
+    if (err) { 
     } else {
       console.log("added user")
     }
     // console.log(result)
   })
 });
+
+
 
 app.post('/api/login',(req,res)=>{
   const username = req.body.username
@@ -50,7 +53,7 @@ app.post('/api/login',(req,res)=>{
     if (rows.length > 0) {
       if (rows[0]?.password === password) {
           console.log('success!');
-          res.redirect('/bloodbank');
+          res.redirect('/');
       }else{
       console.log('incorrect password');
       }
@@ -58,6 +61,10 @@ app.post('/api/login',(req,res)=>{
       console.log('username not found', username);
   }
 })
+})
+
+app.get('/', (req, res)=> {
+    res.render('pages/Home')
 })
 
 

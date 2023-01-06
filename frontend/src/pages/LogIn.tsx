@@ -3,7 +3,8 @@ import { Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import Axios from "axios";
 
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+import Team from "./Team";
 
 
   export function LogIn() {
@@ -13,6 +14,8 @@ import { Link } from "react-router-dom";
     const submitData = ()=> {
       Axios.post("http://localhost:3002/api/login", {username: username, password: password}
       ).then(()=>{
+        // <Route path="/team" element={<Team />} />
+        console.log("logged in")
         alert("Successful Login")
       })
     }

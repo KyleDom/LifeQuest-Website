@@ -85,7 +85,7 @@ export function Team() {
           </Col>
         </Row>
         <div>
-          <h2 className="aboutus"> ABOUT US</h2>
+          <h2 className="aboutUs"> ABOUT LIFEQUEST</h2>
           <p className="paragraph">
             The purpose of the online blood donation management system is to create an online communication between the organization and the blood donors. Anyone or any organization that wants to donate blood for a good cause or needs blood can register through this website. If necessary, the admin authority may add, delete and modify. The Online Blood Donation Management System project's goal is to create an online database of blood donation information. The distributed client-server computing technology has been taken into consideration throughout the entire project's development.
           </p>

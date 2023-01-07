@@ -4,18 +4,18 @@ import * as Yup from "yup";
 import {useState} from 'react';
 import Axios  from "axios";
 
+export function SignUp() {
+    const [fullName, setFullName] = useState('');
+    const [address, setAddress] = useState('');
+    const [age, setAge] = useState('');
+    const [height, setHeight] = useState('');
+    const [weight, setWeight] = useState('');
+    const [gender, setGender] = useState('');
+    const [blood, setBloodType] = useState('');
+    const [mobileNumber, setMobileNumber] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
-export function Signup() {
-    const [fullName,setfullName] = useState('')
-    const [address,setaddress] = useState('')
-    const [age,setage] = useState('')
-    const [height,setheight] = useState('')
-    const [weight,setweight] = useState('')
-    const [gender,setgender] = useState('')
-    const [blood,setbloodtype] = useState('')
-    const [mobileNumber,setMobileNumber] = useState('')
-    const [username,setuserName] = useState('')
-    const [password,setPassword] = useState('')
     const submitData = ()=> {
       Axios.post("http://localhost:3002/api/insert", {username: username, password: password, fullName: fullName, address: address, gender:gender, blood: blood, age:age, weight:weight, height:height,mobileNumber:mobileNumber}
       ).then(()=>{
@@ -23,8 +23,6 @@ export function Signup() {
         alert(blood)
       })
     }
-
-
 
     const formik = useFormik({
       initialValues: {
@@ -34,7 +32,7 @@ export function Signup() {
         height: "",
         weight:"",
         gender: "",
-        bloodtypes: "",
+        bloodTypes: "",
         mobileNumber: "",
         username:"",
         password: "",
@@ -54,7 +52,7 @@ export function Signup() {
           .min(18, "You must be 18 and above")
           .required("Required")
           .strict(true),
-        bloodtypes: Yup.string().required("Required").strict(true),
+        bloodTypes: Yup.string().required("Required").strict(true),
         mobileNumber: Yup.string().required("Required").strict(true),
         password: Yup.string().required("Required").strict(true),
       }),
@@ -66,14 +64,14 @@ export function Signup() {
     return (
       <div className="mt-5 mb-5 container-fluid col-8">
         <Form>
-          <Form.Group className="mb-3" controlId="formFullname">
+          <Form.Group className="mb-3" controlId="formFullName">
             <Form.Label>Fullname</Form.Label>
             <Form.Control
               name="fullName"
               type="text"
               onChange={(e)=>{
                 
-                setfullName(e.target.value)
+                setFullName(e.target.value)
               }}
               placeholder="Please enter your fullname"
             />
@@ -91,10 +89,10 @@ export function Signup() {
               name="age"
               type="number"
               onChange={(e)=>{
-                setage(e.target.value)
+                setAge(e.target.value)
               }}
               onBlur={formik.handleBlur}
-              placeholder="Please enter your age"
+              placeholder="Please input your age"
             />
             {formik.touched.age && formik.errors.age ? (
               <p className="text-danger" style={{ fontSize: "0.8em" }}>
@@ -110,10 +108,10 @@ export function Signup() {
               name="height"
               type="number"
               onChange={(e)=>{
-                setheight(e.target.value)
+                setHeight(e.target.value)
               }}
               onBlur={formik.handleBlur}
-              placeholder="Please enter your height"
+              placeholder="Please input your height in cm"
             />
             {formik.touched.height && formik.errors.height ? (
               <p className="text-danger" style={{ fontSize: "0.8em" }}>
@@ -129,10 +127,10 @@ export function Signup() {
               name="weight"
               type="number"
               onChange={(e)=>{
-                setweight(e.target.value)
+                setWeight(e.target.value)
               }}
               onBlur={formik.handleBlur}
-              placeholder="Please enter your weight"
+              placeholder="Please input your weight in kg"
             />
             {formik.touched.weight && formik.errors.weight ? (
               <p className="text-danger" style={{ fontSize: "0.8em" }}>
@@ -145,9 +143,9 @@ export function Signup() {
           <Form.Group className="mb-3" controlId="formgender">
             <Form.Label>Gender</Form.Label>
             <Form.Select aria-label="Default select example" onChange={(e)=>{
-                setgender(e.target.value)
+                setGender(e.target.value)
               }}>
-              <option> Select Gender</option>
+              <option> Please select your gender </option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </Form.Select>
@@ -158,10 +156,10 @@ export function Signup() {
               name="address"
               type="text"
               onChange={(e)=>{
-                setaddress(e.target.value)
+                setAddress(e.target.value)
               }}
               onBlur={formik.handleBlur}
-              placeholder="Please enter your address"
+              placeholder="Please input your address"
             />
             {formik.touched.address && formik.errors.address ? (
               <p className="text-danger" style={{ fontSize: "0.8em" }}>
@@ -172,11 +170,11 @@ export function Signup() {
             )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBloodTypes">
-            <Form.Label>Blood Types</Form.Label>
+            <Form.Label> Blood Type </Form.Label>
             <Form.Select aria-label="Default select example" onChange={(e)=>{
-                setbloodtype(e.target.value)
+                setBloodType(e.target.value)
               }}>
-              <option> Select Blood Type</option>
+              <option> Please select your blood type </option>
               <option value="A">A</option>
               <option value="A+">A+</option>
               <option value="AB">AB</option>
@@ -194,7 +192,7 @@ export function Signup() {
                 setMobileNumber(e.target.value)
               }}
               onBlur={formik.handleBlur}
-              placeholder="Please enter your mobile number"
+              placeholder="Please input your mobile number"
             />
             {formik.touched.mobileNumber && formik.errors.mobileNumber ? (
               <p className="text-danger" style={{ fontSize: "0.8em" }}>
@@ -210,10 +208,10 @@ export function Signup() {
               name="username"
               type="text"
               onChange={(e)=>{
-                setuserName(e.target.value)
+                setUsername(e.target.value)
               }}
               onBlur={formik.handleBlur}
-              placeholder="Your username"
+              placeholder="Please input your username"
             />
             {formik.touched.username && formik.errors.username ? (
               <p className="text-danger" style={{ fontSize: "0.8em" }}>
@@ -232,7 +230,7 @@ export function Signup() {
                 setPassword(e.target.value)
               }}
               onBlur={formik.handleBlur}
-              placeholder="Your password"
+              placeholder="Please input your password"
             />
             {formik.touched.password && formik.errors.password ? (
               <p className="text-danger" style={{ fontSize: "0.8em" }}>
@@ -250,4 +248,4 @@ export function Signup() {
     );
   }
 
-  export default Signup;
+  export default SignUp;

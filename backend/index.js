@@ -1,10 +1,8 @@
 const express = require('express')
 const app = express()
-
 const bodyParser = require('body-parser')
 const mysql = require('mysql')
 const cors = require("cors");
-const { application } = require('express');
 
 const db = mysql.createPool({
     host:'localhost',
@@ -13,15 +11,10 @@ const db = mysql.createPool({
     database:'bloodbankmanagementdb'
 });
 
-
 app.use(cors())
 app.use(express.json())
-app.use(bodyParser.urlencoded({extended:true}))
-
-
 
 app.post('/api/insert',(req,res)=>{
-
   const username = req.body.username
   const password = req.body.password
   const fullName = req.body.fullName
@@ -39,7 +32,7 @@ app.post('/api/insert',(req,res)=>{
     } else {
       console.log("added user")
     }
-    // console.log(result)
+
   })
 });
 
@@ -67,11 +60,6 @@ app.post('/api/login',(req,res)=>{
   }
 })
 })
-
-app.get('/', (req, res)=> {
-    res.render('pages/Home')
-})
-
 
 app.listen(3002,()=>{
     console.log('running on port 3002')

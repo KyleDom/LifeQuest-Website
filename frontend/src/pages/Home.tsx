@@ -1,5 +1,5 @@
 import { Card, Col, Row } from "react-bootstrap";
-import {useState,useEffect} from 'react';
+import { useEffect } from 'react';
 import Axios from "axios";
 
 export function Home() {
@@ -10,7 +10,6 @@ export function Home() {
   })
   return (
     <>
-    
       <div className="headline">
         <h2>Blood Donation 🩸</h2>
         <p className="ps-5">Donate blood and Save Lives.</p>

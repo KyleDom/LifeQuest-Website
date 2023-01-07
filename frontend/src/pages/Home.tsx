@@ -1,8 +1,16 @@
 import { Card, Col, Row } from "react-bootstrap";
+import {useState,useEffect} from 'react';
+import Axios from "axios";
 
 export function Home() {
+  useEffect(()=>{
+    Axios.get('http://localhost:3002/api/get').then((response)=>{
+      console.log(response)
+    })
+  })
   return (
     <>
+    
       <div className="headline">
         <h2>Blood Donation 🩸</h2>
         <p className="ps-5">Donate blood and Save Lives.</p>
@@ -32,7 +40,7 @@ export function Home() {
           <Card style={{ width: '18rem' }}>
             <Card.Body>
               <Card.Title>AB 🩸 </Card.Title>
-              <Card.Text>
+              <Card.Text >
                 Number of donors:
               </Card.Text>
             </Card.Body>

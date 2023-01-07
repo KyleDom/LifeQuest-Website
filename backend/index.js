@@ -34,7 +34,7 @@ app.post('/api/insert',(req,res)=>{
   const blood = req.body.blood
   const sqlInsert =`INSERT INTO user (username, password, fullName, address, gender, age, weight, height, mobileNumber, blood) 
   VALUES ("${username}", "${password}", "${fullName}", "${address}", "${gender}", "${age}", "${weight}", "${height}", "${mobileNumber}", "${blood}")`
-  db.query(sqlInsert, function(err, res){
+  db.query(sqlInsert, function(err){
     if (err) { 
     } else {
       console.log("added user")
@@ -43,7 +43,12 @@ app.post('/api/insert',(req,res)=>{
   })
 });
 
-
+app.get('/api/get',(req,res)=>{
+  const sqlselect = "SELECT blood FROM user";
+  db.query(sqlselect,(err,result)=>{
+    res.send(result)
+  })
+})
 
 app.post('/api/login',(req,res)=>{
   const username = req.body.username
@@ -52,13 +57,13 @@ app.post('/api/login',(req,res)=>{
   db.query(`SELECT * FROM user WHERE username = '${username}'`, (err, rows, fields)=>{
     if (rows.length > 0) {
       if (rows[0]?.password === password) {
-          console.log('success!');
-          res.redirect('/');
-      }else{
+        console.log('success!');
+        res.redirect('/');
+      } else{
       console.log('incorrect password');
       }
   } else {
-      console.log('username not found', username);
+    console.log('username not found', username);
   }
 })
 })

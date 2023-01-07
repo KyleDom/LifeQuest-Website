@@ -12,7 +12,7 @@ export function Team() {
               <Card.Body>
                 <Card.Title>BANDIOLA, Jay</Card.Title>
                 <Card.Text>
-                  Sofware Developer
+                  Software Developer
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -23,7 +23,7 @@ export function Team() {
               <Card.Body>
                 <Card.Title>DELA CRUZ, Jiverlee</Card.Title>
                 <Card.Text>
-                  Sofware Developer
+                  Software Developer
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -34,7 +34,7 @@ export function Team() {
               <Card.Body>
                 <Card.Title>JAGUNAP, Edmar Cloyd</Card.Title>
                 <Card.Text>
-                  Sofware Developer
+                  Software Developer
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -45,7 +45,7 @@ export function Team() {
               <Card.Body>
                 <Card.Title>JERMANOS AMSO, Basil</Card.Title>
                 <Card.Text>
-                  Sofware Developer
+                  Software Developer
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -56,7 +56,7 @@ export function Team() {
               <Card.Body>
                 <Card.Title>LOMIGO, Kyle Dominic</Card.Title>
                 <Card.Text>
-                  Sofware Developer
+                  Software Developer
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -67,7 +67,7 @@ export function Team() {
               <Card.Body>
                 <Card.Title>SOLAS, Kert Jem</Card.Title>
                 <Card.Text>
-                  Sofware Developer
+                  Software Developer
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -78,7 +78,7 @@ export function Team() {
               <Card.Body>
                 <Card.Title>TORRED, Ferjen Dave</Card.Title>
                 <Card.Text>
-                  Sofware Developer
+                  Software Developer
                 </Card.Text>
               </Card.Body>
             </Card>

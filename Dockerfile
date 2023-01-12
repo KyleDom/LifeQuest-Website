@@ -2,7 +2,7 @@ FROM node:17
 
 WORKDIR /Lifequest/frontend
 
-RUN npm install
+RUN npm i -g
 
 COPY . .
 

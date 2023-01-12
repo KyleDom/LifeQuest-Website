@@ -1,9 +1,9 @@
 FROM node:17
 
-WORKDIR Lifequest/backend
+WORKDIR Lifequest/frontend
 
 COPY . .
 
 EXPOSE 5000
 
-CMD ["npm", "devStart"]
+CMD ["npm", "start"]

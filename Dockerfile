@@ -1,11 +1,13 @@
 FROM node:17
 
-WORKDIR Lifequest/frontend
+WORKDIR /Lifequest/backend
 
-ENV PATH /app/node_modules/.bin:$PATH
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install --silent
-RUN npm install react-scripts@4.0.3 -g --silent
-COPY . ./
-CMD ["npm", "start"]
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 5000
+
+CMD ["node", "index.js"]

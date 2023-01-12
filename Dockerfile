@@ -2,7 +2,7 @@ FROM node:17
 
 WORKDIR /Lifequest/frontend
 
-COPY package*.json ./
+COPY package*.json
 
 RUN npm install
 

@@ -1,6 +1,6 @@
 FROM node:17
 
-WORKDIR /Lifequest/backend
+WORKDIR /Lifequest/frontend
 
 COPY package*.json ./
 
@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["node", "index.js"]
+CMD ["npm", "start"]

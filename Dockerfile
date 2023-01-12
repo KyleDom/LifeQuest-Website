@@ -11,5 +11,4 @@ RUN npm install react-scripts@5.0.1 -g --silent
 COPY . ./
 
 EXPOSE 5000
-RUN npm run build
 CMD ["npm", "start"]

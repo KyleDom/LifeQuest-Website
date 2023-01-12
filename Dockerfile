@@ -1,6 +1,6 @@
 FROM node:17
 
-WORKDIR /var/jenkins_home/workspace/Lifequest
+WORKDIR /var/jenkins_home/workspace/Lifequest/backend
 
 COPY . .
 

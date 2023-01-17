@@ -8,7 +8,7 @@ export function Navbar() {
       <Container>
         <Nav className="d-flex">
           <h3 className="life-quest text-dark">
-            Life<span className="text-danger">Test</span>
+            Life<span className="text-danger">Quest</span>
           </h3>
           <Nav.Link to="/" as={NavLink}>
             Home

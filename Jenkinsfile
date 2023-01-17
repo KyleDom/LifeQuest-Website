@@ -10,7 +10,7 @@ pipeline{
         stage('Docker Build') {
     	agent any
       steps {
-        sh pwd
+        pwd
         sh "ls -lat"
       	sh 'docker build -t ferjen/new:latest .'
           

@@ -10,7 +10,7 @@ pipeline{
         stage('Docker Build') {
     	agent any
       steps {
-        dir('LifeQuest-Website/frontend'){
+        dir('/var/jenkins_home/workspace/new/LifeQuest-Website/frontend'){
         script{
       	sh 'docker build -t ferjen/new:latest .'
             

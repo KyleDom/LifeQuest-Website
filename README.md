@@ -20,3 +20,4 @@ Database: **MySql**
 **Step 8:** Run ```sudo chmod +x /usr/local/bin/dbmate```
 
 additional line
+trial

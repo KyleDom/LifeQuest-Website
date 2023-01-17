@@ -1,5 +1,5 @@
 pipeline{
-    agent any
+    agent {label 'docker-agent-alpine'}
     stages {
         stage('Pull') {
             steps {
@@ -10,11 +10,9 @@ pipeline{
         stage('Docker Build') {
     	agent any
       steps {
-        dir('/var/jenkins_home/workspace/new/LifeQuest-Website/frontend'){
-        script{
+     
       	sh 'docker build -t ferjen/new:latest .'
             
-        }    
         }  
       }
     }

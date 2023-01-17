@@ -1,5 +1,5 @@
 pipeline{
-    agent any
+    agent {label 'docker-agent-alpine'}
     stages {
         stage('Pull') {
             steps {
@@ -8,7 +8,7 @@ pipeline{
             }
         }
         stage('Docker Build') {
-            agent {label 'docker-agent-alpine'}
+            agent any
                 steps {
                     sh "ls -lat"
       	            sh 'docker build -t ferjen/new:latest .'

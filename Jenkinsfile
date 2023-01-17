@@ -3,7 +3,7 @@ pipeline{
     stages {
         stage('Pull') {
             steps {
-         checkout scm(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/KyleDom/LifeQuest-Website.git']])
+         checkout (branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/KyleDom/LifeQuest-Website.git']])
             }
         }
         stage('Docker Build') {
